@@ -1,0 +1,22 @@
+<div mat-dialog-content>
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <div class="modal-body">
+                <div style="color: red; font-weight: bold; font-size: 13px;text-align: center;">
+                    <span class="text-bold-600">
+                        Voulez-vous vraiment annuler ce congé {{conge.description}}
+                    </span>
+                    <span style="color: #270067;"> </span>
+                    <div class="modal-footer">
+                        <button class="btn btn-close btn-sm btn-rounded" data-dismiss="modal" (click)=" onNoClick()">
+                            <i class="mdi mdi-close"></i>Non
+                        </button>
+                        <button class="btn btn-light btn-sm btn-rounded" (click)="annuler()" >
+                            <i class="mdi mdi-check"></i> Oui
+                        </button>
+                    </div>
+                </div>
+            </div>  
+         </div>
+    </div>
+</div>

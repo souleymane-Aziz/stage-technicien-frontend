@@ -1,0 +1,15 @@
+/* ul .sub-menu-li a:active {
+    background-color: #e8faed !important;
+} */
+
+.collapse .nav>li.hover>a,
+.collapse .nav>li.active>a {
+    color: #FFF;
+    font-weight: 500;
+    background-color: #d12a39;
+}
+
+.main-menu.menu-dark .navigation>li.open>a {
+    color: #ffffff;
+    background-color: #171524;
+}

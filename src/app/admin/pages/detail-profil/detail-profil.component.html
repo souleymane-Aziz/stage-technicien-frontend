@@ -1,0 +1,139 @@
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 mb-1">
+        <div class="card">
+            <div class="card-toolbar shadow-reset">
+                <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        <span class="header-text-position"><i class="mdi mdi-account-card-details mr-1"></i>MON
+                            PROFIL</span>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4"></div>
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        <ul class="breadcome-menu">
+                            <li class="teal">
+                                <a [routerLink]="['/admin/dashboard']">Tableau de Bord</a>
+                                <span class="bread-slash">/</span>
+                            </li>
+                            <li><span class="bread-blod">Détail de mon profil</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-body shadow-reset">
+                <br>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-1 col-md-1"></div>
+                    <div class="col-xs-12 col-sm-10 col-md-10">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <mat-card>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-5 col-md-5">
+                                            <mat-label class="ft-w-b">Prénom : </mat-label>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-7 col-md-7">
+                                            <span>{{currentUser.prenom}}</span>
+                                        </div>
+                                    </div>
+                                    <hr class="hr" />
+
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-5 col-md-5">
+                                            <mat-label class="ft-w-b">Nom : </mat-label>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-7 col-md-7">
+                                            <span>{{currentUser.nom}}</span>
+                                        </div>
+                                    </div>
+                                    <hr class="hr" />
+
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-5 col-md-5">
+                                            <mat-label class="ft-w-b">Tel mobile : </mat-label>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-7 col-md-7">
+                                            <span>{{currentUser.telephone}}</span>
+                                        </div>
+                                    </div>
+                                    <hr class="hr" />
+
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-5 col-md-5">
+                                            <mat-label class="ft-w-b">Adresse : </mat-label>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-7 col-md-7">
+                                            <span>{{currentUser.adresse}}</span>
+                                        </div>
+                                    </div>
+                                    <hr class="hr" />
+
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-5 col-md-5">
+                                            <mat-label class="ft-w-b">Date création : </mat-label>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-7 col-md-7">
+                                            <span>{{currentUser.dateCreation | date: 'dd/MM/yyyy'}}</span>
+                                        </div>
+                                    </div>
+                                    <hr class="hr" />
+
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-5 col-md-5">
+                                            <mat-label class="ft-w-b">Email : </mat-label>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-7 col-md-7">
+                                            <span>{{currentUser.email}}</span>
+                                        </div>
+                                    </div>
+                                    <hr class="hr" />
+                                    
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-5 col-md-5">
+                                            <mat-label class="ft-w-b">Etat : </mat-label>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-7 col-md-7">
+                                            <span>{{currentUser.enabled? 'Actif' : 'Inactif'}}</span>
+                                        </div>
+                                    </div>
+                                </mat-card>
+                                <br/>
+                            </div>
+                            <div class="col-xs-12 col-sm-3 col-md-3">
+                                <mat-card>
+                                    <img *ngIf="!currentUser.imageName" src="assets/images/no_user.png" width="100%" alt="PHOTO">
+                                    <img *ngIf="currentUser.imageName" [src]="urlDeBase + currentUser.imageName" width="100%" height="200" alt="PHOTO">
+                                </mat-card>
+                                <br/>
+
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-4 col-md-4">
+                                        <mat-label class="ft-w-b">Status : </mat-label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-8 col-md-8">
+                                        <span [ngStyle]="{'color': (currentUser.statusConnexion === 'ONLINE')? '#2fce2c' : '#d80000'}">
+                                            {{currentUser.statusConnexion}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <hr class="hr" />
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12" style="text-align: center;margin-top: 10px;">
+                        <div style="text-align: center;background: #f9a253;height: a0px;">
+                            <i class="mdi mdi-account-card-details middle" style="color: white;font-size: 40px;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

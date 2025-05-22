@@ -1,0 +1,63 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '5px',fullScreenBackdrop:true }"></ngx-loading>
+<h2 mat-dialog-title>{{affectation.id? 'Modification du': 'Nouveau'}} Affectation</h2>
+<div mat-dialog-content>
+    <form #elementForm="ngForm" name="form">
+        <br/>
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <mat-form-field class="full-width">
+                    <mat-label>Selectionnner une Materielle</mat-label>
+                    <mat-select name="materiel" [(ngModel)]="affectation.materiel" required>
+                        <div class=select-search-input>
+                            <input matInput type="text" name="materielFilter" focused="'true'" [(ngModel)]="materielFilter.nom" type="text" autocomplete="off" placeholder="Search ...">
+                            <span class="span-icon-filter">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <mat-option [value]="">Deselectionnez
+                            <button class="btn btn-deselect btn-sm button-deselect">X</button>
+                        </mat-option>
+                        <mat-option *ngFor="let materiel of materiels | filterBy: materielFilter" [value]="materiel">
+                            {{materiel.nom}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-label>Selectionnner un employé</mat-label>
+                    <mat-select name="utilisateur" [(ngModel)]="affectation.employe" required>
+                        <div class=select-search-input>
+                            <input matInput type="text" name="utilisateurFilter" focused="'true'" [(ngModel)]="utilisateurFilter.nomComplet" type="text" autocomplete="off" placeholder="Search ...">
+                            <span class="span-icon-filter">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <mat-option [value]="">Deselectionnez
+                            <button class="btn btn-deselect btn-sm button-deselect">X</button>
+                        </mat-option>
+                        <mat-option *ngFor="let employe of utilisateurs | filterBy: utilisateurFilter" [value]="employe">
+                            {{employe.nomComplet}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <input matInput [matDatepicker]="dateAffectation" [(ngModel)]="affectation.dateAffectation" name="dateAffectation" placeholder="Date Affectation" readonly />
+                    <mat-datepicker-toggle matSuffix [for]="dateAffectation">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #dateAffectation></mat-datepicker>
+                </mat-form-field>
+               
+            </div>
+        </div>
+    </form>
+</div>
+
+<div mat-dialog-actions align="center">
+    <button mat-dialog-close class="btn btn-close btn-sm btn-rounded mr-1" (click)="onNoClick()">
+        <i class="mdi mdi-close"></i> Fermer
+    </button>
+    <button [disabled]="!elementForm.form.valid" class="btn btn-light btn-sm btn-rounded" (click)="save()">
+        <i class="mdi mdi-content-save"></i> Enregistrer
+    </button>
+</div>

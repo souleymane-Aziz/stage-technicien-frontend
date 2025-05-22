@@ -1,0 +1,22 @@
+.text-gradient {
+    background: linear-gradient(90deg, #2583f5, #0ac879);
+    font-size: 40px;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.rapport-text {
+    color: #0ac879;
+    font-family: "Times New Roman Regular";
+    font-weight: bold;
+}
+
+.icon-lg-15 {
+    font-size: 1.5rem;
+}
+
+.ft-w-500 {
+    font-weight: 500;
+}
+/* 74098000 */

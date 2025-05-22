@@ -1,0 +1,20 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '5px',fullScreenBackdrop:true }"></ngx-loading>
+<h4 class="modal-title" id="myModalLabel2">{{(dialogAction === 'activate') ? ' Activation' : ' Désactivation'}} du materiel</h4>
+<br/>
+<div mat-dialog-content>
+    <div style="font-weight: bold; font-size: 13px;text-align: center;">
+        <span class="text-bold-600" style="color: #d80000;">
+            Êtes-vous sûr de vouloir vraiment
+            {{(dialogAction ==='activate')? 'activer' : 'désactiver'}}
+        </span><br/> le materiel de
+        <span style="color: #270067;"> {{materiel?.nom}} {{materiel?.marque}} ?</span>
+    </div>
+</div>
+<div mat-dialog-actions align="center">
+    <button class="btn btn-close btn-sm btn-rounded mr-1" (click)="onNoClick()">
+        <i class="mdi mdi-close"></i> Non
+    </button>
+    <button class="btn btn-light btn-sm btn-rounded" (click)="(dialogAction ==='activate')? activate() : desactivate()">
+        <i class="mdi mdi-check"></i> Oui
+    </button>
+</div>

@@ -1,0 +1,83 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~ngx-toastr/toastr';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+.mat-step-header {
+    pointer-events: none !important;
+}
+.navbar .navbar-menu-wrapper {
+    background: #2583f5;
+    transition: width 0.25s ease;
+    -webkit-transition: width 0.25s ease;
+    -moz-transition: width 0.25s ease;
+    -ms-transition: width 0.25s ease;
+    color: #9b9b9b;
+    padding-left: 1.062rem;
+    padding-right: 1.062rem;
+    width: calc(100% - 215px);
+    height: 50px;
+    border-bottom: 1px solid #e3e3e3;
+}
+.navbar .navbar-menu-wrapper .navbar-nav .nav-item.dropdown .count-indicator .count {
+    position: absolute;
+    left: 65%;
+    width: 8px;
+    height: 8px;
+    font-weight: bold;
+    border-radius: 25px;
+    background: none;
+    color: #e41313;
+    top: 0px;
+}
+.nav-item>a:hover {
+    background-color: #2583f5 !important;
+    color: #FFFFFF !important;
+    font-weight: bold !important;
+}
+.c-app-1 {
+    color: #2583f5 !important;
+}
+.c-app-no_empty {
+    color: #a80b0b !important;
+}
+.bg-btn-refresh {
+    background-color: #2583f5 !important;
+    border-color: #2583f5 !important;
+}
+.bg-btn-add {
+    background-color: #11b206 !important;
+    border-color: #11b206 !important;
+}
+.btn-close {
+    color: #ffffff;
+    background-color: #b5170b;
+    border-color: #b5170b;
+}
+.btn-light:disabled {
+    color: #ffffff;
+    background-color: #11b206;
+    border-color: #11b206;
+}
+.img-empty-list {
+    width: 150px;
+}
+.bg-pdf {
+    background-color: #6c757d !important;
+    border-color: #6c757d !important;
+}
+.btn-light {
+    color: #ffffff;
+    background-color: #11b206;
+    /* border-color: #f8f9fa; */
+    border-color: #11b206;
+}
+.auth form .auth-form-btn {
+    border-radius: 25px !important;
+    background: -webkit-linear-gradient(right,  #11b206, #2583f5);
+    border-color: white !important;
+}
+.auth .auth-form-light {
+    background: #ffffff;
+    border-radius: 10px;
+}

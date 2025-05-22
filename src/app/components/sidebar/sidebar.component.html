@@ -1,0 +1,67 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <i class="mdi mdi-close menu-icon d-lg-none" style="font-size: 1.5rem;margin-left: 18px;" (click)="closeSidebar()"></i>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/dashboard">
+                <i class="icon-home3 menu-icon"></i>
+                <span class="menu-title">Tableau de bord</span>
+            </a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/admin/materiel">
+                <i class="mdi mdi-circle-outline menu-icon"></i>
+                <span class="menu-title">Materiels / Affections</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/maintenance">
+              <i class="fa fa-wrench menu-icon"></i>
+              <span class="menu-title">Maintenance</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/prestataire">
+              <i class="mdi mdi-emoticon menu-icon"></i>
+              <span class="menu-title">Prestataire</span>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="">
+            <a class="nav-link" routerLink="/depannage">
+              <i class="mdi mdi-grid-large menu-icon"></i>
+              <span class="menu-title">Dépannage</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/panne">
+              <i class="mdi mdi-chart-pie menu-icon"></i>
+              <span class="menu-title">Panne /Depannages</span>
+            </a>
+          </li>
+          <li class="nav-item" *ngIf="">
+            <a class="nav-link" routerLink="/affectation">
+              <i class="mdi mdi-file-document-box-outline menu-icon"></i>
+              <span class="menu-title">Affectation</span>
+            </a>
+          </li>
+       
+        <li class="nav-item" *ngIf="roleManager.isDroitVoirMenuParametre()">
+            <a class="nav-link" routerLink="/admin/administration">
+                <i class="fa fa-gear menu-icon"></i>
+                <span class="menu-title">Paramètres</span>
+            </a>
+        </li>
+       <li class="nav-item">
+        <a class="nav-link" routerLink="/contrats">
+          <i class="mdi mdi-file-document-box-outline menu-icon"></i>
+          <span class="menu-title">Gestion des contrats</span>
+        </a>
+       </li>
+       <li class="nav-item">
+        <a class="nav-link" routerLink="/conge">
+          <i class="mdi mdi-format-list-checks menu-icon"></i>
+          <span class="menu-title">Demande des congés</span>
+        </a>
+       </li>
+    </ul>
+</nav>

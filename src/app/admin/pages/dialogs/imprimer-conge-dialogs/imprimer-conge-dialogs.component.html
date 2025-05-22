@@ -1,0 +1,72 @@
+
+    <div class="element" id="print-me">
+        <div class="logo">
+            <img src="assets/images/ngsystem.png">
+        </div>
+        <div class="titre">
+            <p>DEMANDE DE PERMISSION</p>
+        </div>
+        <p><strong>Nom:</strong> {{currentUser.prenom}}</p>
+        <p><strong>Prénom:</strong> {{currentUser.username}}</p>
+        <p><strong>Nombre de jour demande:</strong> {{conge.type.duree}}</p>
+        <div class="">
+           
+            <div class="periode">
+                <p >
+                     <strong>Période: </strong>
+                        du (debut de permission) {{conge.dateDebut}}
+                </p>
+                <p >
+                    Au (inclus)
+                </p>
+                
+                <span style="white-space: nowrap">
+                    <p><strong>Période de fin de permission:</strong> {{conge.dateFin}}</p>
+                </span>
+                <p> <span style="white-space: nowrap"><strong>Motif de la permission:</strong>
+                    {{conge.type.libelle}}
+                </span>
+            </p><br>
+            <br>
+            <p> <span style="white-space: nowrap">
+                <strong>Date de la Demande:</strong> {{conge.dateCreation}}
+            </span>
+        </p><br>
+        <br>
+        
+        <p><span style="white-space: nowrap">Signature de l'Agent</span> </p>
+
+            </div>
+            <div  class="periode1">
+                <label><input type="checkbox">Matin</label>
+                <label><input type="checkbox">Après midi</label><br>
+                <label><input type="checkbox">Matin</label>
+                <label><input type="checkbox">Après midi</label>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <p>Avis et Signature du Responsable</p>
+            <label><input type="checkbox">Avis favorable</label><br>
+            <label><input type="checkbox">Avis défavorable</label>
+            </div>
+        
+            </div><br>
+           
+                
+    </div>
+    <div class="button">
+        <button class="btn btn-close btn-sm btn-rounded" data-dismiss="modal" (click)="onNoClick()">
+            <i class="mdi mdi-close"></i>Retourner
+        </button>
+        <button class="btn btn-light btn-sm btn-rounded" (click)="printThispage()">
+            <i class="mdi mdi-check"></i> Imprimer
+        </button>
+    </div>
+     

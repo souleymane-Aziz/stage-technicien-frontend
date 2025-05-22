@@ -1,0 +1,61 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '5px',fullScreenBackdrop:true }"></ngx-loading>
+<h2 mat-dialog-title>{{depannage.id? 'Modification du': 'Nouveau'}} Depannage</h2>
+<div mat-dialog-content>
+    <form #elementForm="ngForm" name="form">
+        <br/>
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <mat-form-field class="full-width">
+                    <mat-label>Panne</mat-label>
+                    <input matInput name="panne" type="text" placeholder="Panne" [(ngModel)]="depannage.panne.libelle" required />
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <mat-label>Prestataire</mat-label>
+                    <mat-select name="prestataire" [(ngModel)]="depannage.prestataire" required>
+                        <div class=select-search-input>
+                            <input matInput type="text" name="prestataireFilter" focused="'true'" [(ngModel)]="prestataireFilter.nomComplet" type="text" autocomplete="off" placeholder="Search ...">
+                            <span class="span-icon-filter">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                        <mat-divider></mat-divider>
+                        <mat-option [value]="">Deselectionnez
+                            <button class="btn btn-deselect btn-sm button-deselect">X</button>
+                        </mat-option>
+                        <mat-option *ngFor="let prestataire of prestataires | filterBy: prestataireFilter" [value]="prestataire">
+                            {{prestataire.nomComplet}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <input matInput name="type" type="text" placeholder="Type" [(ngModel)]="depannage.type" required />
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <input matInput [matDatepicker]="date_debut" [(ngModel)]="depannage.date_debut" name="date_debut" placeholder="Date debut" readonly />
+                    <mat-datepicker-toggle matSuffix [for]="date_debut">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #date_debut></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <input matInput [matDatepicker]="date_fin" [(ngModel)]="depannage.date_fin" name="date_fin" placeholder="Date de fin" readonly />
+                    <mat-datepicker-toggle matSuffix [for]="date_fin">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #date_fin></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <input matInput name="frais" type="text" placeholder="Frais" [(ngModel)]="depannage.frais" required />
+                </mat-form-field>
+               
+            </div>
+        </div>
+    </form>
+</div>
+
+<div mat-dialog-actions align="center">
+    <button mat-dialog-close class="btn btn-close btn-sm btn-rounded mr-1" (click)="onNoClick()">
+        <i class="mdi mdi-close"></i> Fermer
+    </button>
+    <button [disabled]="!elementForm.form.valid" class="btn btn-light btn-sm btn-rounded" (click)="save()">
+        <i class="mdi mdi-content-save"></i> Enregistrer
+    </button>
+</div>

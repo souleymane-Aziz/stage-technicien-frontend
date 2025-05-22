@@ -1,0 +1,185 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '5px',fullScreenBackdrop:true }"></ngx-loading>
+<div class="row" *ngIf="roleManager.isDroitVoirMenuTableauBord()">
+    <div class="col-md-2">
+        <div class="mr-xl-5">
+            <span class="text-gradient" style="font-size: 2rem;width:15vh;">S</span>
+            <span class="rapport-text">tatistiques</span>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="dateDebut" [(ngModel)]="searchParam.dateDebut" name="dateDebut" placeholder="Du" readonly />
+            <mat-datepicker-toggle matSuffix [for]="dateDebut">
+            </mat-datepicker-toggle>
+            <mat-datepicker #dateDebut></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div class="col-md-2">
+        <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="dateFin" [(ngModel)]="searchParam.dateFin" name="dateFin" placeholder="Au" readonly />
+            <mat-datepicker-toggle matSuffix [for]="dateFin">
+            </mat-datepicker-toggle>
+            <mat-datepicker #dateFin></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div class="col-md-2">
+        <div class="toolbar-buttons">
+            <button type="button" (click)="initDashboad()" class="btn btn-light bg-btn-refresh btn-icon mb-3">
+                <i class="mdi mdi-cached text-muted c-white"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="roleManager.isDroitVoirMenuTableauBord()">
+    <div class="col-sm-3 col-md-3 col-lg-3 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body dashboard-tabs shadow-reset">
+                <div class="d-flex p-1-07-rem">
+                    <i class=""><img src="assets/images/depannageImage.jpg" style="width: 30px;height: 30px;" alt="NGsystem"/></i>
+                    <!-- <i class="mdi mdi-swap-vertical icon-lg-15 c-app-2" style="font-size: 35px;"></i> -->
+                    <div class="d-flex flex-column ta-r-w100-pr-0">
+                        <label class="ft-w-500">Depannage Total</label>
+                        <h5>{{dashboard.nombreDepannage | number: '': 'fr-FR'}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 col-md-3 col-lg-3 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body dashboard-tabs shadow-reset">
+                <div class="d-flex p-1-07-rem">
+                    <i class="icone1"><img src="assets/images/panne.png" style="width: 30px;height: 30px;" alt="NGsystem"/></i>
+                    <!-- <i class="mdi mdi-cash-100 icon-lg-15 c-app-1"></i> -->
+                    <div class="d-flex flex-column ta-r-w100-pr-0">
+                        <label class="ft-w-500"> Nombre de pannes</label>
+                        <h5>{{dashboard.nombrePanne | number: '': 'fr-FR'}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 col-md-3 col-lg-3 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body dashboard-tabs shadow-reset">
+                <div class="d-flex p-1-07-rem">
+                    <i class=""><img src="assets/images/imagePanne.png" style="width: 30px;height: 30px;" alt="NGsystem"/></i>
+                    <!-- <i class="mdi mdi-cash-multiple icon-lg-15 c-red"></i> -->
+                    <div class="d-flex flex-column ta-r-w100-pr-0">
+                        <label class="ft-w-500">Maintenances prévus</label>
+                        <h5>{{dashboard.nombreMaintenance  | number: '': 'fr-FR'}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 col-md-3 col-lg-3 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body dashboard-tabs shadow-reset">
+                <div class="d-flex p-1-07-rem">
+                    <i class=""><img src="assets/images/maintenance.webp" style="width: 30px;height: 30px;" alt="NGsystem"/></i>
+                    <!-- <i class="mdi mdi-account-multiple icon-lg-15 c-app-3"></i> -->
+                    <div class="d-flex flex-column ta-r-w100-pr-0">
+                        <label class="ft-w-500">Materielles</label>
+                        <h5>{{dashboard.nombreMateriel| number: '': 'fr-FR'}}</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="roleManager.isDroitVoirMenuTableauBord()">
+    <div class="col-md-8 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body shadow-reset">
+                <p class="card-title">Liste des prestataires</p>
+                <hr/>
+                <div class="table-responsive">
+                    <table mat-table [dataSource]="dataSource" matSort class="table-hover">
+                         <!-- Name Column -->
+                         <ng-container matColumnDef="nom">
+                            <th mat-header-cell *matHeaderCellDef>Nom</th>
+                            <td mat-cell *matCellDef="let row">{{row.nom}}</td>
+                          </ng-container>
+
+                          <!-- Weight Column -->
+                          <ng-container matColumnDef="prenom">
+                            <th mat-header-cell *matHeaderCellDef>Prénom</th>
+                            <td mat-cell *matCellDef="let row">{{row.prenom}}</td>
+                          </ng-container>
+
+                          <!-- Symbol Column -->
+                          <ng-container matColumnDef="telephone">
+                            <th mat-header-cell *matHeaderCellDef>Téléphone</th>
+                            <td mat-cell *matCellDef="let row">{{row.telephone}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="adresse">
+                            <th mat-header-cell *matHeaderCellDef>Adresse</th>
+                            <td mat-cell *matCellDef="let row">{{row.adresse}}</td>
+                          </ng-container>
+
+                          <ng-container matColumnDef="email">
+                            <th mat-header-cell *matHeaderCellDef>Email</th>
+                            <td mat-cell *matCellDef="let row">{{row.email}}</td>
+                          </ng-container>
+
+            
+                          <ng-container matColumnDef="etat">
+                              <th mat-header-cell *matHeaderCellDef> ETAT </th>
+                              <td mat-cell *matCellDef="let row" [ngStyle]="{'color': (row.etat)? '#007b1d' : '#d80000'}">
+                                  {{row.etat? 'Actif': 'Inactif'}} 
+                              </td>
+                          </ng-container>
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                    <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 25, 50]"></mat-paginator>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body shadow-reset">
+                <p class="card-title">
+                    <span class="c-app-1">NEXT GENERATION SYSTEM</span>
+                    <span class="c-app-3"> SARL</span> 
+                </p>
+                <hr/>
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item">
+                            <img class="d-block" src="assets/images/table1.png" alt="Third slide" style="width: 100%;min-width: 400px;">
+                        </div>
+                        <div class="carousel-item active">
+                            <img class="d-block" src="assets/images/table1.png" alt="First slide" style="width: 100%;min-width: 400px;">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block" src="assets/images/table1.png" alt="Second slide" style="width: 100%;min-width: 400px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" *ngIf="!roleManager.isDroitVoirMenuTableauBord()">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" style="width: 100%;">
+            <div class="carousel-inner">
+                <div class="carousel-item">
+                    <img class="d-block" src="assets/images/table1.png" alt="Third slide" style="width: 100%;height: 500px;">
+                </div>
+                <div class="carousel-item active">
+                    <img class="d-block" src="assets/images/table1.png" alt="First slide" style="width: 100%;height: 500px;">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block" src="assets/images/table1.png" alt="Second slide" style="width: 100%;height: 500px;">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

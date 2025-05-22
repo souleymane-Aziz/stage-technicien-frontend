@@ -1,0 +1,116 @@
+<div class="col-sm-12 col-md-12 col-lg-12 mb-1">
+        <div class="card">
+            <div class="card-toolbar shadow-reset">
+                <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        <span class="header-text-position"><i class="mdi mdi-file-document-box-outline menu-icon"></i>Contrats</span>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4"></div>
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        <ul class="breadcome-menu">
+                            <li class="teal">
+                                <a [routerLink]="['/admin/contrats']">Contrats</a>
+                                <span class="bread-slash">/</span>
+                            </li>
+                            <li><span class="bread-blod">Contrats</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12 mb-1">
+        <div class="card">
+            <div class="card-body shadow-reset">
+
+                <div class="card-header">
+                    <div class="row">
+                            <div class="col-sm-2 col-md-2 col-lg-2">
+                                    <mat-form-field class="full-width">
+                                        <input matInput type="text" (keyup)="applyFilter($event.target.value)"  placeholder="Filtrer ...">
+                                    </mat-form-field>  
+                            </div>  
+                            <button title="Actualiser" type="button" (click)="findAll()" class="btn btn-light bg-btn-refresh btn-icon mr-1">
+                                <i class="mdi mdi-cached text-muted c-white"></i>
+                            </button>  
+                            <button  (click)="showAddDialog()"  class="btn btn-light bg-btn-refresh btn-icon mr-1"> 
+                            <mat-icon> plus_one </mat-icon> 
+                            </button>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12">
+        <div class="card">
+            <div class="card-body shadow-reset">
+                    <div class="row">
+                         <table mat-table [dataSource]="dataSource">
+                            <!-- Position Column -->
+                            <ng-container matColumnDef="position">
+                              <th mat-header-cell *matHeaderCellDef> No. </th>
+                              <td mat-cell *matCellDef="let element"> {{element?.id}} </td>
+                            </ng-container>
+                        
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="type">
+                              <th mat-header-cell *matHeaderCellDef> Type </th>
+                              <td mat-cell *matCellDef="let element"> {{element?.type}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="employe">
+                                <th mat-header-cell *matHeaderCellDef> Employé </th>
+                                <td mat-cell *matCellDef="let element" > 
+                                    <p class="p1" style="display:inline-block; margin-right: 10px">{{element?.employe?.nom}}</p>
+                                    <p class="p2" style="display:inline-block">{{element.employe.prenom}}</p> </td>
+                              </ng-container>
+                         
+                        
+                            <!-- Weight Column -->
+                            <ng-container matColumnDef="description">
+                              <th mat-header-cell *matHeaderCellDef>Description </th>
+                              <td mat-cell *matCellDef="let element"> {{element?.description}} </td>
+                            </ng-container>
+                        
+                            <!-- Symbol Column -->
+                            <ng-container matColumnDef="dateDebut">
+                              <th mat-header-cell *matHeaderCellDef> dateDebut </th>
+                              <td mat-cell *matCellDef="let element">  
+                                <p *ngIf="element.type=='CDD'">{{element?.dateDebut | date: 'dd/MM/yyyy'}}</p>
+                              </td>
+                            </ng-container>
+                            <!-- Symbol Column -->
+                            <ng-container matColumnDef="dateFin">
+                                <th mat-header-cell *matHeaderCellDef> dateFin</th>
+                                <td mat-cell *matCellDef="let element" >  
+                                    <p *ngIf="element.type=='CDD'">{{element?.dateFin | date: 'dd/MM/yyyy'}}</p>
+                                </td>
+                              </ng-container>
+                              <ng-container matColumnDef="etat">
+                                <th mat-header-cell *matHeaderCellDef> Etat</th>
+                                <td mat-cell *matCellDef="let element"> 
+                                <p class="etat" *ngIf="element.etat=='EN_COURS'">{{element.etat}} </p>
+                                <p class="etat1" *ngIf="element.etat=='ANNULE'">{{element.etat}} </p>
+                            </td>
+                              </ng-container>
+                              <ng-container matColumnDef="option">
+                                <th mat-header-cell *matHeaderCellDef> ACTIONS </th>
+                                <td mat-cell *matCellDef="let row">
+                                    <a title="Modifier la region" class="mr-2"><i
+                                            style="color:#2558f2;cursor: pointer; font-size: 20px;" class="mdi mdi-pen"
+                                            (click)="showEditDialog(row)"></i>
+                                    </a>
+                                    <i class="mdi mdi-close" *ngIf="!row.etat=='ANNULE'"    style="color:#f22525;cursor: pointer; font-size: 20px;" (click)="showConfirmerDialog(row)" >
+                                    </i>
+                                    <i class="mdi mdi-close" *ngIf="row.etat=='EN_COURS'"  style="color:#f22525;cursor: pointer; font-size: 20px;" (click)="showConfirmerDialog(row)"></i>
+                                </td>
+                            </ng-container>   
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                          </table>
+                    </div>
+            </div>
+        </div>
+    </div>
+    
+    

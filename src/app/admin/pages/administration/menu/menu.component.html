@@ -1,0 +1,86 @@
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 mb-1">
+        <div class="card">
+            <div class="card-toolbar shadow-reset">
+                <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        <span class="header-text-position"><i class="mdi mdi-key-change mr-1"></i>Paramètres</span>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4"></div>
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        <ul class="breadcome-menu">
+                            <li class="teal">
+                                <a [routerLink]="['/dashboard']">Accueil</a>
+                                <span class="bread-slash">/</span>
+                            </li>
+                            <li><span class="bread-blod">Paramètres</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-3 col-md-3 col-lg-3 grid-margin stretch-card" *ngIf="roleManager.isDroitVoirMenuProfile()">
+        <div class="card">
+            <a [routerLink]="['/admin/administration/profil']">
+                <div class="card-body dashboard-tabs shadow-reset">
+                    <div class="d-flex p-1-07-rem">
+                        <i class="mdi mdi-account-switch icon-lg c-app-2"></i>
+                        <div class="d-flex flex-column ta-r-w100-pr-0">
+                            <label class="ft-w-b c-app-1">PROFILS</label>
+                            <h6>Gestion des profils</h6>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-sm-3 col-md-3 col-lg-3 grid-margin stretch-card" *ngIf="roleManager.isDroitVoirMenuUtilisateur()">
+        <div class="card">
+            <a [routerLink]="['/admin/administration/employe']">
+                <div class="card-body dashboard-tabs shadow-reset">
+                    <div class="d-flex p-1-07-rem">
+                        <i class="mdi mdi-account-multiple icon-lg c-app-2"></i>
+                        <div class="d-flex flex-column ta-r-w100-pr-0">
+                            <label class="ft-w-b c-app-1">EMPLOYES</label>
+                            <h6>Gestion des employés</h6>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="col-sm-3 col-md-3 col-lg-3 grid-margin stretch-card">
+        <div class="card">
+            <a [routerLink]="['/admin/administration/type-materiel']">
+                <div class="card-body dashboard-tabs shadow-reset">
+                    <div class="d-flex p-1-07-rem">
+                        <i class="mdi mdi-circle-outline icon-lg c-app-2"></i>
+                        <div class="d-flex flex-column ta-r-w100-pr-0">
+                            <label class="ft-w-b c-app-1">TYPES MATERIELLES</label>
+                            <h6>Gestion des Types Materiels</h6>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+ 
+    <div class="col-sm-3 col-md-3 col-lg-3 grid-margin stretch-card" *ngIf="roleManager.isDroitVoirMenuLog()">
+        <div class="card">
+            <a [routerLink]="['/admin/administration/logs']">
+                <div class="card-body dashboard-tabs shadow-reset">
+                    <div class="d-flex p-1-07-rem">
+                        <i class="mdi mdi-alarm-multiple icon-lg c-app-2"></i>
+                        <div class="d-flex flex-column ta-r-w100-pr-0">
+                            <label class="ft-w-b c-app-1">LOGS</label>
+                            <h6>Gestion des logs</h6>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

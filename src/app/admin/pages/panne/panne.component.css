@@ -1,0 +1,28 @@
+table{
+  width: 100%;
+}
+mat-form-field {
+  margin-right: 12px;
+}
+.button_add{
+  margin: 13px 1px 1px 10px;
+
+}
+.button_actualiser{
+  margin: 13px;
+}
+.example-full-width{
+  font-size: 10px !important;
+}
+.date_debut{
+  font-size: 10px !important;
+}
+.date_fin{
+  font-size: 10px !important;
+}
+.critere{
+  font-size: 10px !important;
+}
+
+
+

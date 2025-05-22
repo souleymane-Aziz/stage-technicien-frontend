@@ -1,0 +1,52 @@
+.element{
+  background-color: #fff;
+  height: 600px;
+  width: 800px;
+}
+.logo{
+  display:flex;
+  justify-content: center;
+  align-items:center;
+  margin-top: 20px;
+  
+}
+.logo img{
+  width: 60px;
+  
+}
+
+.warn{
+float: left;
+
+}
+.war{
+   float: right;
+}
+.fin{
+  margin:0%
+}
+.button{
+  text-align: center;
+}
+.titre{
+  text-align: center
+}
+.periode{
+  float: left;
+  margin: 0%;
+}
+.periode1{
+  float: right;
+}
+.per{
+  float: left;
+}
+.pers{
+  float: left;
+}
+
+@media print{
+  button{
+    display: none;
+  }
+}

@@ -1,0 +1,150 @@
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '5px',fullScreenBackdrop:true }"></ngx-loading>
+<div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-12 mb-1">
+        <div class="card">
+            <div class="card-toolbar shadow-reset">
+                <div class="row">
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        <span class="header-text-position"><i class="mdi mdi-apps mr-1"></i>Prestataires</span>
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4"></div>
+                    <div class="col-sm-4 col-md-4 col-lg-4">
+                        <ul class="breadcome-menu">
+                            <li class="teal">
+                                <a [routerLink]="['/admin/prestataire']">Prestataires</a>
+                                <span class="bread-slash">/</span>
+                            </li>
+                            <li><span class="bread-blod">Prestataires</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12" *ngIf="currentPage === 'list'">
+        <div class="card">
+            <div class="card-body shadow-reset">
+
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4 col-lg-4">
+                            <mat-form-field class="full-width">
+                                <input matInput type="text" (keyup)="applyFilter($event.target.value)" placeholder="Filtrer ...">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-sm-2 col-md-2 col-lg-2">
+                            <div class="toolbar-buttons">
+                                <button title="Actualiser" type="button" (click)="search()" class="btn btn-light bg-btn-refresh btn-icon mr-1">
+                                    <i class="mdi mdi-cached text-muted c-white"></i>
+                                </button>
+                                <button title="Ajouter nouveau" type="button" (click)="showAddDialog()" class="btn btn-light bg-btn-add btn-icon mr-1">
+                                    <i class="mdi mdi-plus text-muted c-white"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <table mat-table matTableExporter [dataSource]="dataSource" #exporter matSort class="table-hover">
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="nom">
+                              <th mat-header-cell *matHeaderCellDef>Nom</th>
+                              <td mat-cell *matCellDef="let row">{{row.nom}}</td>
+                            </ng-container>
+
+                            <!-- Weight Column -->
+                            <ng-container matColumnDef="prenom">
+                              <th mat-header-cell *matHeaderCellDef>Prénom</th>
+                              <td mat-cell *matCellDef="let row">{{row.prenom}}</td>
+                            </ng-container>
+
+                            <!-- Symbol Column -->
+                            <ng-container matColumnDef="telephone">
+                              <th mat-header-cell *matHeaderCellDef>Téléphone</th>
+                              <td mat-cell *matCellDef="let row">{{row.telephone}}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="adresse">
+                              <th mat-header-cell *matHeaderCellDef>Adresse</th>
+                              <td mat-cell *matCellDef="let row">{{row.adresse}}</td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="email">
+                              <th mat-header-cell *matHeaderCellDef>Email</th>
+                              <td mat-cell *matCellDef="let row">{{row.email}}</td>
+                            </ng-container>
+
+              
+                            <ng-container matColumnDef="etat">
+                                <th mat-header-cell *matHeaderCellDef> ETAT </th>
+                                <td mat-cell *matCellDef="let row" [ngStyle]="{'color': (row.enabled)? '#007b1d' : '#d80000'}">
+                                    {{row.enabled? 'Actif': 'Inactif'}} 
+                                </td>
+                            </ng-container>
+                            <ng-container matColumnDef="option">
+                                <th mat-header-cell *matHeaderCellDef> ACTIONS </th>
+                                <td mat-cell *matCellDef="let row">
+                                    <a title="Modifier la region" class="mr-2"><i
+                                            style="color:#2558f2;cursor: pointer; font-size: 20px;" class="mdi mdi-pen"
+                                            (click)="showEditDialog(row)"></i>
+                                    </a>
+                                    <a *ngIf="!row.enabled" title="Activer la region" (click)="showConfirmDialog(row, 'activate')"><i
+                                            style="font-size: 20px; color: #0cc27e; cursor: pointer;"
+                                            class="mdi mdi-toggle-switch-off"></i>
+                                    </a>
+                                    <a title="Désactiver la region" *ngIf="row.enabled" (click)="showConfirmDialog(row, 'desactivate')">
+                                        <i style="font-size: 20px; color: #d80000; cursor: pointer;" class="mdi mdi-toggle-switch"></i>
+                                    </a>
+                                </td>
+                            </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                        <div *ngIf="prestataires?.length===0" class="div-empty-list">
+                            <br />
+                            <div>
+                                <img class="img-empty-list" src="assets/images/no_empty.png" alt="">
+                                <h4 class="mt-2 c-app-no_empty">Aucun resultat trouvé </h4>
+                            </div>
+                        </div>
+                        <mat-paginator [pageSize]="25" [pageSizeOptions]="[25,50, 100]"></mat-paginator>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- confim modal -->
+    <div *ngIf="currentPage === 'list'" class="modal fade text-xs-left" id="prestataireConfirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+        <div class="modal-sm modal-dialog " role="document">
+            <div class="modal-content" style="width: 320px;">
+                <div class="modal-header">
+                    <button style="display: none;" type="button" #openConfirmDialog class="btn btn-outline-primary block btn-lg" data-toggle="modal" data-target="#prestataireConfirmModal" data-backdrop="true">
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel2">
+                        {{(dialogAction && dialogAction === 'desactivate') ? 'Désactivation ' : 'Activation '}} de le prestataire
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <div style="color: red; font-weight: bold; font-size: 13px;text-align: center;">
+                        <span class="text-bold-600">
+                            Voulez-vous vraiment
+                            {{(dialogAction && dialogAction ==='desactivate')? 'désactiver' : 'activer'}}
+                            le prestataire ?<br />
+                        </span>
+                        <span style="color: #270067;"> {{prestataire?.nom}}</span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-close btn-sm btn-rounded" data-dismiss="modal">
+                        <i class="mdi mdi-close"></i>Non
+                    </button>
+                    <button class="btn btn-light btn-sm btn-rounded" (click)="(dialogAction && dialogAction ==='desactivate')? desactivate() : activate()">
+                        <i class="mdi mdi-check"></i> Oui
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<div mat-dialog-content>
+    <form #elementForm="ngForm" name="form">
+        <br/>
+        <div class="row">
+            <div class="col-md-12 col-lg-12">
+                <mat-form-field class="full-width">
+                    <mat-label>Selectionner le type de congé</mat-label>
+                    <mat-select name="type" [(ngModel)]="conge.type">
+                      <mat-option *ngFor="let type of typeconges" [value]="type">
+                        {{type.libelle}} ({{ type.duree }} jrs) 
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="full-width">
+                    <input matInput name="description" type="text" placeholder="description" [(ngModel)]="conge.description" required />
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <input matInput [matDatepicker]="dateDebut" [(ngModel)]="conge.dateDebut" name="dateDebut" placeholder="Date debut" readonly required />
+                    <mat-datepicker-toggle matSuffix [for]="dateDebut">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #dateDebut></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                    <input matInput [matDatepicker]="dateFin" [(ngModel)]="conge.dateFin" name="dateFin" placeholder="Date de fin" readonly required/>
+                    <mat-datepicker-toggle matSuffix [for]="dateFin">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #dateFin></mat-datepicker>
+                </mat-form-field>
+                
+            </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions align="center">
+    <button mat-dialog-close class="btn btn-close btn-sm btn-rounded mr-1" >
+        <i class="mdi mdi-close"></i> Fermer
+    </button>
+    <button [disabled]="!elementForm.form.valid" class="btn btn-light btn-sm btn-rounded" (click)="save()" >
+        <i class="mdi mdi-content-save"></i> Enregistrer
+    </button>
+</div>
